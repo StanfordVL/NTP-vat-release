@@ -1,0 +1,90 @@
+<?xml version="0.0" ?>
+<robot name="log.urdf">
+  <link name="log">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+       <mass value=".1"/>
+       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="tinker.obj" scale=".003 .003 .003"/>
+      </geometry>
+       <material name="yellow">
+        <color rgba="1 1 0.4 1"/>
+      </material>
+    </visual>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+	 			<!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker1.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker2.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker3.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker4.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker5.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker6.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+    <collision>
+      <!-- <origin rpy="1.570796 0 0" xyz="-0.016 -0.016 -0.0115"/> -->
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <!-- <box size="0.032 0.023 0.032"/> -->
+        <!-- <box size="0.064 0.040 0.064"/> -->
+        <mesh filename="tinker7.obj" scale=".003 .003 .003"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
+

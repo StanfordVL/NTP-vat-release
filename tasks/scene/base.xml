@@ -1,0 +1,36 @@
+<?xml version="0.0" ?>
+<world name='stack'>
+
+    <body name='plane'>
+        <model filename='plane/plane.urdf'/>
+        <pose xyz="0 0 0" rpy="0 0 0"/>
+        <fixed>true</fixed>
+    </body>
+
+    <body name='table'>
+        <model filename='table/table.urdf'/>
+        <pose xyz="0 0 0" rpy="0 0 0"/>
+        <fixed>true</fixed>
+    </body>
+
+    <robot name='pr2_gripper' type='gripper'>
+        <body name='gripper'>
+            <model filename='gripper/pr2_gripper.urdf'/>
+            <!-- <model filename='sawyer_robot/sawyer_description/urdf/sawyer_arm.urdf'/> -->
+            <!-- <model filename='sawyer_robot/sawyer_arm_pr2.urdf'/> -->
+            <!-- <fixed>true</fixed> -->
+        </body>
+        <pose xyz="-0.0 0.0 1.32" rpy="0 0 0"/>
+    </robot>
+
+    
+    <gravity>0 0 -9.8</gravity>
+
+    <gui>
+        <camera name='pr2_gripper_camera'>
+            <frame>world</frame>
+            <pose xyz="0 -0.2 1" rpy="0 1 0"/>
+        </camera>
+    </gui>
+
+</world>
