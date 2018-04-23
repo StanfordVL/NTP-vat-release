@@ -1,6 +1,9 @@
+"""
+Function that generates neural program traces
+"""
+
 from collections import defaultdict
 from copy import deepcopy
-from IPython import embed
 
 
 class NPIView:

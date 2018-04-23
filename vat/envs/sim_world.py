@@ -1,5 +1,10 @@
+"""
+Simulated environment wrapper
+"""
+
 import numpy as np
 from base_world import BaseWorld
+from builtins import range
 
 
 class SimWorld(BaseWorld):
@@ -19,6 +24,9 @@ class SimWorld(BaseWorld):
         self.start_world()
 
     def setup_scene(self):
+        """
+        Setup the task scene given the scene specs
+        """
         for tobj in self.task_objects:
             tobj.reset()
 
@@ -37,8 +45,8 @@ class SimWorld(BaseWorld):
         grid_x, grid_y = np.mgrid[xmin:xmax:grid_size, ymin:ymax:grid_size]
         grid = np.vstack((grid_x.flatten(), grid_y.flatten())).T
         grid = np.random.permutation(grid)
-        eps = (np.random.random(grid.shape) * 2 - 1) * \
-            pos_eps  # [-pos_eps, pos_eps]
+        eps = (np.random.random(grid.shape) * 2 - 1) * pos_eps
+        # [-pos_eps, pos_eps]
         grid += eps
 
         def get_spec(ospec):
@@ -78,7 +86,7 @@ class SimWorld(BaseWorld):
                 z = ospec['pose']['z']
                 n_repeat = np.random.choice(
                     np.arange(*repeat_range), size=1)[0]
-                for i in xrange(n_repeat):
+                for i in range(n_repeat):
                     s = get_spec(ospec)
                     s['pose']['xyz'] = find_valid_pos(s, z, grid)
                     s['pose']['rpy'] = ospec['pose']['rpy']
@@ -87,7 +95,7 @@ class SimWorld(BaseWorld):
                 repeat_range = ospec['pose']['n_repeat']
                 n_repeat = np.random.choice(
                     np.arange(*repeat_range), size=1)[0]
-                for i in xrange(n_repeat):
+                for i in range(n_repeat):
                     s = get_spec(ospec)
                     s['pose']['xyz'] = ospec['pose']['xyz']
                     s['pose']['rpy'] = ospec['pose']['rpy']
@@ -113,9 +121,3 @@ class SimWorld(BaseWorld):
             if not self.interface.no_collision_with(tpos, boundary, o):
                 return False
         return True
-
-    def perturb_all(self):
-        for _ in xrange(2):
-            for tobj in self.task_objects:
-                for o in tobj.get_instances():
-                    self.perturb(o)

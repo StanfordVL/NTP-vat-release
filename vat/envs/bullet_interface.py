@@ -1,7 +1,6 @@
 import numpy as np
 from base_interface import BaseInterface
-from IPython import embed
-import time
+from builtins import range
 
 OFFSETS = {'gripper_z': np.array([0, 0, 0.32])}
 
@@ -79,7 +78,7 @@ class BulletInterface(BaseInterface):
 
     def reset_gripper(self):
         self._set_to(*POSES['gripper_reset'])
-        for _ in xrange(100):
+        for _ in range(100):
             self.bullet.step()
 
     def reset(self):
@@ -134,41 +133,8 @@ class BulletInterface(BaseInterface):
         success = self.move_to_z(target_z)
         return success
 
-    def reach_to_press(self, obj_name, obj2_name, loc):
-        obj = self.obj[obj_name]
-        obj2 = self.obj[obj2_name]
-        if not self.carrying:
-            return False
-        cobj = self.obj[self.carrying]
-
-        g_to_cobj = (self.gpos - cobj.pos)[2]
-        g_to_cobj_bottom = g_to_cobj + cobj.scale[2] / 2
-
-        obj_top = obj.pos[2] + obj.scale[2] / 2
-        print loc
-        if loc == 1:
-            target_y, target_x = -0.06 + \
-                obj.pos[1], -.02 + (obj.pos[0] + obj2.pos[0]) / 2
-        elif loc == 2:
-            target_y, target_x = -0.22 + \
-                obj.pos[1], -.02 + (obj.pos[0] + obj2.pos[0]) / 2
-
-        print target_x, target_y
-
-        target_z = obj_top + g_to_cobj_bottom + .02
-        success = 0
-        print cobj.pos,  obj.pos, obj2.pos
-        print "REACH TO PRESS", cobj._name
-        success = self.move_to_xy([target_x, target_y])
-        print cobj.pos,  obj.pos, obj2.pos
-        print "CORRECT XY"
-        success = self.move_to_z(target_z)
-
-        print target_z, cobj.pos[2], obj.pos[2], success
-        return success
-
     def wait(self, x):
-        for _ in xrange(x):
+        for _ in range(x):
             self.bullet.step()
 
     def step_simulation(self):
@@ -208,11 +174,3 @@ class BulletInterface(BaseInterface):
 
     def _set_to(self, pos, orn):
         self.gripper.move_to(pos, orn)
-
-    def perturb(self, oname):
-        o = self.obj[oname]
-        pos = o.pos
-        if pos[2] > 0.66:
-            pos[0] += 0.08
-            o.pos = pos
-        self.wait(1000)

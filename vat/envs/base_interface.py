@@ -1,3 +1,8 @@
+"""
+Simulation / Robot environment base wrapper class
+"""
+
+
 import numpy as np
 
 

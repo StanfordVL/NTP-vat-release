@@ -1,3 +1,7 @@
+"""
+Neural Program APIs for NTP
+"""
+
 from sim_world import SimWorld
 try:
     from robot_world import RobotWorld
@@ -15,9 +19,9 @@ def get_api(api_name):
     """
     factory function for APIs
     """
-    if api_name == 'flat':
+    if api_name == 'flat':  # baseline API
         return FlatAPI
-    elif api_name == 'full':
+    elif api_name == 'full':  # hierarchical API
         return FullAPI
     else:
         raise NotImplementedError('%s is not a valid API' % api_name)
@@ -186,9 +190,6 @@ class FullAPI(NPIView):
         if carrying is not None:
             self.world.mask_object(carrying)
 
-        movs = self.world.lock_task_objects()
-        # self.movs = max(movs)
-
         self.target = None
         return out
 
@@ -286,7 +287,6 @@ class FullAPI(NPIView):
         self.program_move_release(trace['in_args'], full_demo=self.full_demo)
         self.append_trace(caller_ptr, trace_ptr)
         self.observe()  # for sorting, make train and eval consistent
-        # return movs
 
     def expert_move_press(self, trace):
         caller_ptr, trace_ptr = self.call_stop(trace)
@@ -526,6 +526,7 @@ def get_task_world(task_name, real=False):
         def start_task(self):
             self.lock_task_objects()
             ti = np.random.randint(0, 4)
+            # start by moving the eef to be on top of a tray
             self.action_move_to('traybox_%i' % ti)
 
     factory_dict = {'sorting': Sorting,

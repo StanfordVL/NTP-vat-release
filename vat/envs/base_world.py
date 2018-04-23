@@ -1,6 +1,10 @@
+"""
+Action and object interface for the task environment
+"""
+
+
 import numpy as np
 import abc
-import vat as vat
 
 
 def action(f):

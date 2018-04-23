@@ -1,8 +1,5 @@
-import os.path as osp
 import os
 import numpy as np
-import warnings
-
 import pybullet as p
 
 from ..world import World
@@ -78,8 +75,8 @@ class BulletWorld(World):
         try:
             p.stopStateLogging(self.curr_recording)
             self.video_log_key += 1
-        except Exception as e:
-            print "No Video Currently Being Logged"
+        except Exception:
+            print("No Video Currently Being Logged")
         self.curr_recording = p.startStateLogging(p.STATE_LOGGING_VIDEO_MP4,
                                                   "video_logs/task_vid_" +
                                                   str(task_name) + "_" + str(self.video_log_key) + ".mp4")
@@ -88,6 +85,7 @@ class BulletWorld(World):
         width, height, im, depth, seg = p.getCameraImage(64, 64, list(
             self.view_matrix), list(self.projection_matrix), renderer=p.ER_TINY_RENDERER)
         self.depth = depth
+        im = np.array(im).reshape([height, width, -1])
         return im[:, :, :3]
 
     def restart(self):
