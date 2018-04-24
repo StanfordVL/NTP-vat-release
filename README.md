@@ -1,4 +1,6 @@
-# Vat
+# NTP Vat
+
+![bullet](docs/bullet_screenshot.png)
 
 This repo is adapted from [Kuan Fang](https://github.com/kuanfang/)'s PyBullet wrapper (VAT).
 
