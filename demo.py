@@ -50,11 +50,23 @@ def main():
     # Process data directory
     print('Data will be loaded from `{:s}`.'.format(args.data_dir))
 
+    # camera params
+    camera_params = {
+        'fov': 60,
+        'aspect': 1,
+        'near': 0.02,
+        'far': 1,
+        'view_matrix': [[0.0, -0.4, 1.4],
+                        [0, 0.0, 0],
+                        [1, 0, 0]]
+    }
+
     # Build the simulation world
     world = get_world(
         args.physics,
         display=args.display,
         data_dir=args.data_dir,
+        camera_params=camera_params,
         verbose=True)
 
     # load scene

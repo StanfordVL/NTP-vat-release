@@ -13,7 +13,8 @@ class BulletWorld(World):
                  display=True,
                  data_dir='./data',
                  verbose=False,
-                 key=None):
+                 key=None,
+                 camera_params={}):
 
         self._pe = BulletPhysicsEngine()
 
@@ -31,13 +32,17 @@ class BulletWorld(World):
         self._modifier_dict = None
 
         # Camera Parameters
-        fov = 60
-        aspect = 1
-        near = 0.02
-        far = 1
+        fov = camera_params.get('fov', 60)
+        aspect = camera_params.get('aspect', 1)
+        near = camera_params.get('near', 0.02)
+        far = camera_params.get('far', 1)
+        view_matrix = camera_params.get(
+            'view_matrix',
+            [[0.0, -0.4, 1.4], [0, 0.0, 0], [1, 0, 0]]
+        )
 
-        self.view_matrix = p.computeViewMatrix(
-            [0.0, -0.4, 1.4], [0, 0.0, 0], [1, 0, 0])
+
+        self.view_matrix = p.computeViewMatrix(*view_matrix)
         self.projection_matrix = p.computeProjectionMatrixFOV(
             fov, aspect, near, far)
 
